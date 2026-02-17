@@ -12,7 +12,7 @@ public class Main {
      
         Model model = new Model();               // Create shared database
         Controller1 c1 = new Controller1(model, "Controller 1", 40, 40); // Create first controller
-        Controller2 c2 = new Controller2(model, "Controller 2"); // Create second controller
+        Controller2 c2 = new Controller2(model, "Controller 2", 40, 200); // Create second controller
         
     } // main
   
