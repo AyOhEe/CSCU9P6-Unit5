@@ -2,20 +2,20 @@ package mvcexample;
 
 // This is the yellow view.
 // It displays the A component of the model (data base).
-// extra comment becuase it didn't work last time
-// another extra comment
+// As supplied, this view does not subscribe to the model as an Observer,
+// and relies on its controller to call update to cause the view to be refreshed.
 
 import java.util.*;  // For Observer
 import java.awt.*;
 import javax.swing.*;
 
-public class View3 extends JPanel
-                   implements Observer {
+public class View3 extends JPanel implements Observer{
   
     private Model model;
     private Controller2 contr;   // Parent Frame
     
     private JTextField display;
+    
     
     // Constructor
     public View3(Controller2 contr, Model model) {
@@ -30,13 +30,21 @@ public class View3 extends JPanel
         display = new JTextField("No data", 15);
         add(display);
         
-        // Subscribe to the model
         model.addObserver(this);
         
     } // constructor
     
-    //Notified by the model when it is altered:
+ // Notified by model when it is altered
     public void update(Observable o, Object arg) {
+        
+        // Fetch (potentially) updated information and display it
+        int a = model.getDataA();
+        display.setText("Model data A: " + a);
+      
+    } 
+     
+// Called by controller to refresh the view:
+    public void update() {
         
         // Fetch (potentially) updated information and display it
         int a = model.getDataA();
@@ -52,7 +60,3 @@ public class View3 extends JPanel
     } // clear
   
 } // class View3
-
-
-
-
